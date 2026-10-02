@@ -1,0 +1,6 @@
+{
+  "name": "VOLTERRA — Performance Sports Footwear",
+  "description": "Official direct-to-consumer e-commerce store and management platform for VOLTERRA performance athletic footwear. Move. Perform. Go Beyond.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
