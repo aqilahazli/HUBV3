@@ -5,11 +5,11 @@ import path from 'path';
 import { defineConfig, Plugin } from 'vite';
 
 /**
- * Plugin to ensure full GitHub Pages SPA compatibility for /HUBV3/:
+ * Plugin to ensure full GitHub Pages SPA compatibility for /SHOPPINGHUB/:
  * 1. In production build (`npm run build`), copies `dist/index.html` to `dist/404.html`
- *    and creates `dist/.nojekyll` so deep links like `/HUBV3/shop` and browser
+ *    and creates `dist/.nojekyll` so deep links like `/SHOPPINGHUB/shop` and browser
  *    refreshes load the React SPA without a GitHub Pages 404 error.
- * 2. In local development (`npm run dev`), allows accessing either `/` or `/HUBV3/`
+ * 2. In local development (`npm run dev`), allows accessing either `/` or `/SHOPPINGHUB/`
  *    seamlessly.
  */
 function githubPagesSpaPlugin(): Plugin {
@@ -19,11 +19,11 @@ function githubPagesSpaPlugin(): Plugin {
       server.middlewares.use((req, _res, next) => {
         if (
           req.url &&
-          !req.url.startsWith('/HUBV3') &&
+          !req.url.startsWith('/SHOPPINGHUB') &&
           !req.url.startsWith('/@') &&
           !req.url.startsWith('/node_modules')
         ) {
-          req.url = `/HUBV3${req.url === '/' ? '/' : req.url}`;
+          req.url = `/SHOPPINGHUB${req.url === '/' ? '/' : req.url}`;
         }
         next();
       });
@@ -45,7 +45,7 @@ function githubPagesSpaPlugin(): Plugin {
 }
 
 export default defineConfig({
-  base: '/HUBV3/',
+  base: '/SHOPPINGHUB/',
   plugins: [react(), tailwindcss(), githubPagesSpaPlugin()],
   resolve: {
     alias: {

@@ -9,19 +9,21 @@ interface RouterContextType {
 
 const RouterContext = createContext<RouterContextType | undefined>(undefined);
 
-const REPO_BASE = '/HUBV3';
+const REPO_BASE = '/SHOPPINGHUB';
 
 /**
- * Strips the GitHub Pages repository prefix (`/HUBV3`) from a browser pathname
+ * Strips the GitHub Pages repository prefix (`/SHOPPINGHUB`) from a browser pathname
  * so the application always works with clean logical routes (`/`, `/shop`, `/product/vr001`, etc.).
  */
 export function stripBasePath(pathname: string): string {
   if (!pathname) return '/';
   let cleaned = pathname;
 
-  // Strip /HUBV3 prefix (case-insensitive for safety)
+  // Strip /SHOPPINGHUB prefix (case-insensitive for safety)
   if (cleaned.toLowerCase().startsWith(REPO_BASE.toLowerCase())) {
     cleaned = cleaned.slice(REPO_BASE.length);
+  } else if (cleaned.toLowerCase().startsWith('/hubv3')) {
+    cleaned = cleaned.slice('/hubv3'.length);
   }
 
   // Also handle index.html if accessed directly
@@ -37,8 +39,8 @@ export function stripBasePath(pathname: string): string {
 }
 
 /**
- * Prepends `/HUBV3` when running on GitHub Pages or under `/HUBV3/`
- * so browser URLs and `<a href>` attributes point to `/HUBV3/...`.
+ * Prepends `/SHOPPINGHUB` when running on GitHub Pages or under `/SHOPPINGHUB/`
+ * so browser URLs and `<a href>` attributes point to `/SHOPPINGHUB/...`.
  */
 export function withBasePath(logicalPath: string): string {
   const cleanLogical = logicalPath.startsWith('/') ? logicalPath : `/${logicalPath}`;
